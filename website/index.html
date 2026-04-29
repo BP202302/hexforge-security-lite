@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HexForge Security</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: radial-gradient(circle at top, #102033, #03060a 70%); color: #e8faff; font-family: Arial, sans-serif; }
+    header { padding: 22px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,255,204,.2); position: sticky; top: 0; z-index: 10; background: rgba(3,6,10,.92); backdrop-filter: blur(10px); }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; border: 1px solid rgba(0,255,204,.25); }
+    .logo { font-size: 24px; font-weight: 800; color: #00ffcc; }
+    nav a { color: #b9d8df; margin-left: 24px; text-decoration: none; font-weight: 600; }
+    .hero { padding: 90px 8%; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+    h1 { font-size: 58px; line-height: 1.05; margin-bottom: 22px; }
+    h1 span { color: #00ffcc; }
+    .hero p { font-size: 19px; color: #b9d8df; line-height: 1.7; margin-bottom: 30px; }
+    .btn { display: inline-block; padding: 14px 24px; border-radius: 10px; background: #00ffcc; color: #00110d; font-weight: 800; text-decoration: none; margin: 6px 8px 6px 0; border: 1px solid transparent; }
+    .btn.secondary { background: transparent; color: #00ffcc; border: 1px solid #00ffcc; }
+    .btn.warning { background: linear-gradient(135deg, #ff8c2a, #ffd166); color: #130800; }
+    .panel { background: rgba(4,12,20,.9); border: 1px solid rgba(0,255,204,.25); border-radius: 18px; padding: 24px; box-shadow: 0 0 40px rgba(0,255,204,.12); }
+    .terminal { background: #020407; border-radius: 12px; padding: 18px; font-family: monospace; color: #00ffcc; min-height: 320px; overflow: hidden; }
+    .terminal div { margin: 10px 0; }
+    section { padding: 70px 8%; }
+    .section-title { text-align: center; font-size: 38px; margin-bottom: 20px; }
+    .section-sub { text-align: center; color: #a8c5cc; margin-bottom: 45px; }
+    .features, .plans, .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); padding: 26px; border-radius: 16px; }
+    .card h3 { color: #00ffcc; margin-bottom: 12px; }
+    .card p { color: #b9d8df; line-height: 1.6; }
+    .price { font-size: 34px; font-weight: bold; margin: 18px 0; }
+    .badge { display: inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(0,255,204,.12); color: #00ffcc; font-size: 13px; margin-bottom: 12px; font-weight: 700; }
+    input { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid rgba(0,255,204,.3); background: #050b10; color: white; margin-bottom: 12px; }
+    button { width: 100%; padding: 14px; border-radius: 10px; border: none; background: #00ffcc; font-weight: 800; cursor: pointer; }
+    footer { padding: 35px 8%; border-top: 1px solid rgba(255,255,255,.08); color: #86a7ad; text-align: center; }
+    @media(max-width: 900px) { .hero, .features, .plans, .stats { grid-template-columns: 1fr; } h1 { font-size: 42px; } nav { display: none; } }
+  </style>
+</head>
+<body>
+<script>
+  const LIVE_APP_URL = "http://34.148.255.149:8000";
+  const WEBSITE_URL = "https://hexforgeai.dev";
+  const GITHUB_DOWNLOAD_URL = "https://github.com/BP202302/hexforgeai.github.io";
+  const PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES";
+</script>
+<header>
+  <div class="brand"><img src="hexforge-logo.png" alt="HexForge Security"><div><div class="logo">HexForge Security</div><div style="font-size:13px;color:#86a7ad;">Community cybersecurity analysis tool</div></div></div>
+  <nav><a href="#features">Features</a><a href="#demo">Demo</a><a href="#plans">Editions</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="hero">
+  <div><div class="badge">Open source community edition</div><h1>Security analysis for <span>modern web testing</span>.</h1><p>HexForge Security Lite is a community-focused web security analysis tool built for students, researchers and developers who want fast evidence-based checks before manual validation.</p><a class="btn warning" href="#" onclick="openLiveApp()">🚀 Use Online</a><a class="btn secondary" href="#demo">Try Preview</a><a class="btn secondary" href="#" onclick="openDownload()">Download Lite</a></div>
+  <div class="panel"><div class="terminal"><div>&gt; Initializing HexForge Security Lite...</div><div>&gt; Running 30 community checks...</div><div>&gt; Checking HTTP security headers...</div><div>&gt; Reviewing exposed HTML patterns...</div><div style="color:#ffb347;">⚠ Missing Content-Security-Policy</div><div style="color:#ffb347;">⚠ X-Frame-Options not detected</div><div style="color:#ffb347;">⚠ External script without SRI detected</div><div style="color:#00ffcc;">✓ Community scan completed</div><div>&gt; Manual validation is recommended before reporting.</div></div></div>
+</section>
+<section><div class="stats"><div class="card"><h3>30 Checks</h3><p>Community checks for headers, HTML exposure, TLS basics, metadata, links and client-side patterns.</p></div><div class="card"><h3>50 URLs</h3><p>Lite supports up to 50 targets per session for practical community testing.</p></div><div class="card"><h3>No DOCX/PDF</h3><p>Automatic professional report generation is reserved for future advanced editions.</p></div></div></section>
+<section id="features"><h2 class="section-title">Built for useful security learning</h2><p class="section-sub">Simple enough for beginners, structured enough to be useful.</p><div class="features"><div class="card"><h3>Evidence-based findings</h3><p>Findings include location, evidence and recommendation fields instead of vague alerts.</p></div><div class="card"><h3>Realistic checks</h3><p>Includes checks for missing headers, clickjacking exposure, CORS wildcard, external scripts, insecure HTTP links and TLS basics.</p></div><div class="card"><h3>Open source friendly</h3><p>Designed as a public Lite edition to attract users, contributors and early feedback before advanced editions launch.</p></div></div></section>
+<section id="demo"><h2 class="section-title">Live preview simulation</h2><p class="section-sub">This preview demonstrates the result style. Full analysis runs in the hosted app or downloadable Lite.</p><div class="panel"><input id="target" placeholder="https://example.com" /><button onclick="runDemo()">Run Preview</button><div class="terminal" id="demoOutput" style="margin-top:16px;"><div>&gt; Waiting for target...</div></div></div></section>
+<section id="plans"><h2 class="section-title">Editions</h2><p class="section-sub">Lite is public. Advanced editions will be announced from the official site.</p><div class="plans"><div class="card"><div class="badge">Free</div><h3>HexForge Lite</h3><div class="price">$0</div><p>Community edition with 30 checks, 50 URLs per session, basic API and evidence-based findings.</p><br><a class="btn" href="#" onclick="openDownload()">Download Lite</a></div><div class="card"><div class="badge">Planned</div><h3>HexForge Pro</h3><div class="price">Soon</div><p>Planned: advanced validation, AI assistance, multi-target workflows and professional reports.</p><br><a class="btn secondary" href="#" onclick="openWebsite()">More Information</a></div><div class="card"><div class="badge">Premium</div><h3>HexForge Specter</h3><div class="price">Soon</div><p>Planned: enterprise automation, dashboards, integrations, team workflows and multi-model AI features.</p><br><a class="btn secondary" href="#" onclick="openWebsite()">More Information</a></div></div></section>
+<section id="contact"><h2 class="section-title">Support the project</h2><p class="section-sub">HexForge Security is currently in development by Brandon Steven Barrera Portillo.</p><div style="text-align:center;"><a class="btn secondary" href="mailto:brandonstevenbarrera@gmail.com">Contact</a><a class="btn" href="#" onclick="openWebsite()">Official Website</a><a class="btn warning" href="#" onclick="openPayPal()">Support Development</a></div></section>
+<footer>© 2026 HexForge Security. All rights reserved. Commercial use prohibited without permission.</footer>
+<script>
+function openLiveApp(){window.open(LIVE_APP_URL,"_blank")}
+function openWebsite(){window.open(WEBSITE_URL,"_blank")}
+function openDownload(){window.open(GITHUB_DOWNLOAD_URL,"_blank")}
+function openPayPal(){window.open(PAYPAL_URL,"_blank")}
+function runDemo(){const target=document.getElementById("target").value||"https://example.com";const out=document.getElementById("demoOutput");out.innerHTML=`<div>&gt; Target: ${target}</div><div>&gt; Running HexForge preview...</div><div>&gt; Checking security headers...</div><div style="color:#ffb347;">⚠ Missing Content-Security-Policy</div><div style="color:#ffb347;">⚠ Missing X-Frame-Options</div><div style="color:#ffb347;">⚠ X-Content-Type-Options missing</div><div>&gt; Checking HTML exposure...</div><div style="color:#ffb347;">⚠ External script detected</div><div style="color:#ffb347;">⚠ Insecure HTTP reference found</div><div style="color:#00ffcc;">✓ Preview complete</div><div>&gt; Open the online app or download Lite for real scans.</div>`}
+</script>
+</body>
+</html>
