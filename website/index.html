@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HexForge Security Lite</title>
+  <style>
+    :root {
+      --bg: #06080d;
+      --panel: rgba(8, 12, 18, 0.92);
+      --line: rgba(255, 153, 51, 0.22);
+      --line-soft: rgba(92, 120, 145, 0.24);
+      --text: #ecf2ff;
+      --muted: #9eb0c8;
+      --brand: #ff8c2a;
+      --brand-2: #68c0ff;
+      --success: #7ee081;
+      --warn: #ffb347;
+      --danger: #ff7171;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(255, 140, 42, 0.18), transparent 30%),
+        radial-gradient(circle at top left, rgba(104, 192, 255, 0.14), transparent 28%),
+        linear-gradient(180deg, #090d15 0%, #05070b 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 7, 11, 0.85);
+      border-bottom: 1px solid var(--line-soft);
+      padding: 16px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+      background: #111;
+    }
+    .brand h1 { font-size: 22px; font-weight: 800; letter-spacing: 0.4px; }
+    .brand p { color: var(--muted); font-size: 13px; margin-top: 3px; }
+    nav { display: flex; gap: 20px; color: var(--muted); }
+    nav a:hover { color: var(--text); }
+    .hero {
+      padding: 72px 7% 48px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 140, 42, 0.07);
+      color: #ffd2a8;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .hero h2 {
+      font-size: 56px;
+      line-height: 1.04;
+      margin-bottom: 18px;
+      max-width: 740px;
+    }
+    .hero h2 span {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.72;
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: 0.18s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--brand), #ffb347);
+      color: #1d1003;
+      box-shadow: 0 14px 34px rgba(255, 140, 42, 0.18);
+    }
+    .btn.secondary {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+    .btn.ghost {
+      border-color: rgba(104, 192, 255, 0.24);
+      color: #b9e4ff;
+      background: rgba(104, 192, 255, 0.08);
+    }
+    .panel, .card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .panel { padding: 22px; }
+    .terminal {
+      min-height: 360px;
+      background: linear-gradient(180deg, #090d13, #05080d);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      color: #d5f6ff;
+      overflow: hidden;
+    }
+    .terminal .line { margin: 12px 0; color: #b7cad7; }
+    .terminal .ok { color: var(--success); }
+    .terminal .warn { color: var(--warn); }
+    .terminal .blue { color: #86d8ff; }
+    .terminal .danger { color: var(--danger); }
+    section { padding: 26px 7% 56px; }
+    .section-head { margin-bottom: 24px; }
+    .section-head h3 { font-size: 34px; margin-bottom: 8px; }
+    .section-head p { color: var(--muted); line-height: 1.7; max-width: 760px; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card { padding: 24px; }
+    .card h4 { font-size: 21px; margin-bottom: 10px; }
+    .card p, .card li { color: var(--muted); line-height: 1.65; }
+    .mini { color: #c8d6e6; font-weight: 700; font-size: 13px; letter-spacing: 0.4px; }
+    ul { padding-left: 18px; margin-top: 8px; }
+    .plans-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .plans-table th, .plans-table td {
+      padding: 18px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+    }
+    .plans-table th { color: #d5e6f7; background: rgba(255,255,255,0.03); }
+    .plans-table td { color: var(--muted); }
+    .plans-table tr:last-child td { border-bottom: none; }
+    .scan-box { display: grid; gap: 14px; }
+    .scan-box input {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 16px;
+    }
+    .demo-output {
+      min-height: 210px;
+      white-space: pre-wrap;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 14px;
+      color: #dbeaff;
+      background: #070b11;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .footer {
+      padding: 36px 7% 44px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+    .legal {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255, 140, 42, 0.08);
+      border: 1px solid rgba(255, 140, 42, 0.18);
+      color: #ffd8b5;
+      line-height: 1.65;
+    }
+    @media (max-width: 1024px) {
+      .hero, .grid-3, .footer { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 44px; }
+      nav { display: none; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 50px; }
+      .hero h2 { font-size: 36px; }
+      .plans-table th, .plans-table td { padding: 14px 10px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+<script>
+  const LIVE_APP_URL = "";
+  const WEBSITE_URL = "https://hexforgeai.dev";
+  const GITHUB_DOWNLOAD_URL = "https://github.com/BP202302/hexforge-security-lite";
+  const PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES";
+  const AUTHOR_EMAIL = "brandonstevenbarrera@gmail.com";
+</script>
+<header>
+  <div class="brand">
+    <img src="/assets/hexforge-logo.png" alt="HexForge Security logo" />
+    <div>
+      <h1>HexForge Security</h1>
+      <p>Lite • Community analysis edition</p>
+    </div>
+  </div>
+  <nav>
+    <a href="#modules">Módulos</a>
+    <a href="#demo">Demo</a>
+    <a href="#plans">Planes</a>
+    <a href="#support">Soporte</a>
+  </nav>
+</header>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Defensivo · Python · 15 módulos de precisión</div>
+    <h2>Un motor Lite más serio, <span>modular y con menos ruido</span>.</h2>
+    <p>
+      HexForge Security Lite está enfocado en análisis web no invasivo. Esta edición reorganiza el motor en módulos
+      separados, validadores dedicados y salidas con evidencia clara para que el proyecto se vea profesional,
+      mantenible y listo para evolucionar a Pro y Specter.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#demo">Ver demo local</a>
+      <a class="btn secondary" href="#plans">Ver roadmap</a>
+      <a class="btn ghost" href="#" onclick="openDownload()">Repositorio</a>
+    </div>
+    <div class="legal">
+      El código se puede estudiar, usar y modificar para fines personales, educativos y no comerciales.
+      El nombre <strong>HexForge Security</strong>, el logo y la marca quedan reservados; no se permite uso comercial,
+      rebranding ni SaaS sin autorización escrita del autor.
+    </div>
+  </div>
+  <div class="panel">
+    <div class="terminal">
+      <div class="line blue">&gt; Initializing HexForge Security Lite 1.7...</div>
+      <div class="line">&gt; Loading precision modules...</div>
+      <div class="line">&gt; Validating headers, cookies, forms and metadata...</div>
+      <div class="line warn">⚠ Missing CSP and HSTS on HTTPS target</div>
+      <div class="line warn">⚠ Third-party script without SRI</div>
+      <div class="line warn">⚠ Password field still available over HTTP</div>
+      <div class="line ok">✓ Validators reduced noisy duplicate findings</div>
+      <div class="line ok">✓ Structured report ready for manual review</div>
+      <div class="line">&gt; Lite stays defensive: no payload injection, no exploitation.</div>
+    </div>
+  </div>
+</section>
+<section id="modules">
+  <div class="section-head">
+    <h3>Arquitectura pensada para crecer</h3>
+    <p>
+      En lugar de tener todos los analizadores en un solo archivo, el proyecto ahora separa motor, fetcher, utilidades,
+      validadores y módulos individuales. Así se ve más serio y es mucho más fácil de mantener.
+    </p>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="mini">Lite 1.7</div>
+      <h4>15 módulos de precisión</h4>
+      <p>Headers, clickjacking, CORS, cookies, cache, redirects, content-type, metadata, comments, exposición básica, recursos externos, mixed content, forms, robots/sitemap y TLS.</p>
+    </div>
+    <div class="card">
+      <div class="mini">Validación</div>
+      <h4>Menos falsos positivos</h4>
+      <p>Los hallazgos pasan por validadores de headers, red, contenido, cookies, formularios, CORS, exposición y deduplicación antes de aparecer en el reporte.</p>
+    </div>
+    <div class="card">
+      <div class="mini">Python puro</div>
+      <h4>Motor limpio</h4>
+      <p>El motor de análisis y el servidor usan solo la librería estándar de Python, con estructura modular y pruebas locales en laboratorio controlado.</p>
+    </div>
+  </div>
+</section>
+<section id="demo">
+  <div class="section-head">
+    <h3>Demo del motor Lite</h3>
+    <p>Este demo usa la API local del proyecto. Sirve para comprobar la estructura del resultado, la evidencia y los módulos activos.</p>
+  </div>
+  <div class="panel scan-box">
+    <input id="target" placeholder="https://example.com" value="https://example.com" />
+    <button class="btn primary" onclick="runDemo()">Ejecutar análisis</button>
+    <div id="demoOutput" class="demo-output">Esperando objetivo...</div>
+  </div>
+</section>
+<section>
+  <div class="section-head">
+    <h3>Qué queda para Pro y Specter</h3>
+    <p>Lite sigue siendo útil sin robar espacio a las futuras ediciones de pago. Pro y Specter reservan la automatización pesada, equipos y flujos avanzados.</p>
+  </div>
+  <table class="plans-table" id="plans">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Lite</th>
+        <th>Pro</th>
+        <th>Specter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Basic web checks</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>1 URL scan</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>15 precision modules</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Advanced validation depth</td><td>Basic</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Multi-URL scan</td><td>❌</td><td>✅</td><td>✅</td></tr>
+      <tr><td>DOCX/PDF reports</td><td>❌</td><td>✅</td><td>✅</td></tr>
+      <tr><td>AI assistance</td><td>❌</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Nuclei integration</td><td>❌</td><td>Optional</td><td>✅</td></tr>
+      <tr><td>Teams and dashboards</td><td>❌</td><td>❌</td><td>✅</td></tr>
+      <tr><td>API access</td><td>Basic</td><td>Limited</td><td>Full</td></tr>
+    </tbody>
+  </table>
+</section>
+<section id="support">
+  <div class="section-head">
+    <h3>Apoya el proyecto</h3>
+    <p>Se mantiene tu marca, tu logo, tu nombre, tu correo y el enlace de donación. Esta parte sigue visible para la versión pública.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="mini">Autor</div>
+      <h4>Brandon Steven Barrera Portillo</h4>
+      <p>Desarrollando HexForge Security como una línea de producto escalable: Lite para comunidad, Pro para bounty individual y Specter para empresa.</p>
+    </div>
+    <div class="card">
+      <div class="mini">Contacto</div>
+      <h4>Correo</h4>
+      <p><a href="mailto:brandonstevenbarrera@gmail.com">brandonstevenbarrera@gmail.com</a></p>
+      <p style="margin-top:8px;"><a href="#" onclick="openWebsite()">Sitio oficial</a></p>
+    </div>
+    <div class="card">
+      <div class="mini">Donación</div>
+      <h4>PayPal</h4>
+      <p>Si alguien quiere apoyar el desarrollo, se mantiene el botón de donación visible dentro de la edición pública.</p>
+      <div style="margin-top:14px;"><a class="btn primary" href="#" onclick="openPayPal()">Apoyar desarrollo</a></div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div>© 2026 HexForge Security. Community source-available edition. Commercial use and brand use require permission.</div>
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn secondary" href="#" onclick="openWebsite()">Sitio oficial</a>
+    <a class="btn ghost" href="#" onclick="openPayPal()">Donación</a>
+  </div>
+</footer>
+<script>
+  function openWebsite(){ window.open(WEBSITE_URL, "_blank"); }
+  function openDownload(){ window.open(GITHUB_DOWNLOAD_URL, "_blank"); }
+  function openPayPal(){ window.open(PAYPAL_URL, "_blank"); }
+  async function runDemo(){
+    const target = document.getElementById("target").value.trim();
+    const output = document.getElementById("demoOutput");
+    output.textContent = "Ejecutando análisis local...";
+    try {
+      const response = await fetch("/api/scan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: target })
+      });
+      const data = await response.json();
+      if (!data.ok) {
+        output.textContent = `Error: ${data.error || "No se pudo completar el análisis."}`;
+        return;
+      }
+      const lines = [];
+      lines.push(`Version: ${data.version}`);
+      lines.push(`Target: ${data.final_url}`);
+      lines.push(`HTTP status: ${data.status}`);
+      lines.push(`Modules loaded: ${data.modules.length}`);
+      lines.push("");
+      const findings = data.findings.slice(0, 8);
+      if (!findings.length) {
+        lines.push("No se detectaron hallazgos en la muestra.");
+      } else {
+        findings.forEach((item, index) => {
+          lines.push(`${index + 1}. [${item.severity}/${item.confidence}] ${item.title}`);
+          lines.push(`   module: ${item.module}`);
+          lines.push(`   location: ${item.location}`);
+          lines.push(`   evidence: ${item.evidence}`);
+          lines.push("");
+        });
+      }
+      output.textContent = lines.join("\n");
+    } catch (error) {
+      output.textContent = `Error: ${error.message}`;
+    }
+  }
+</script>
+</body>
+</html>
