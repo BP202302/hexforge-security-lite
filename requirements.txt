@@ -1,1 +1,0 @@
-# HexForge Security Lite uses Python standard library only.
