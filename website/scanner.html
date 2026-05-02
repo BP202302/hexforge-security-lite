@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scanner · HexForge Security Lite</title>
+  <link rel="stylesheet" href="/static.css">
+  <script src="/i18n.js" defer></script>
+</head>
+<body>
+  <div class="ambient-logo"></div>
+  <nav class="nav">
+    <a class="brand" href="/" data-lang-link>
+      <img src="/assets/hexforge-logo.png" alt="HexForge Security logo">
+      <span><strong>HexForge Security</strong><small>Lite · Scanner</small></span>
+    </a>
+    <div class="links">
+      <a href="/" data-lang-link data-i18n="navHome">Home</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+      <a class="pill glow" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="navSupport">Support</a>
+      <select class="lang-select" data-lang-select onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">ES</option><option value="en">EN</option><option value="pt">PT</option><option value="ja">JA</option><option value="zh">ZH</option><option value="ar">AR</option><option value="hi">HI</option>
+      </select>
+    </div>
+  </nav>
+
+  <main>
+    <section class="scan-layout">
+      <div class="scanner-card">
+        <span class="eyebrow" data-i18n="navScanner">Scanner</span>
+        <h1 data-i18n="scannerTitle">Run Lite analysis</h1>
+        <p data-i18n="scannerText">Enter an authorized or lab URL. HexForge Lite does not exploit, brute force or bypass controls.</p>
+        <form id="scanForm" class="scan-form">
+          <label for="target" data-i18n="targetLabel">Target URL</label>
+          <input id="target" type="url" required placeholder="https://preview.owasp-juice.shop/#/">
+          <button class="btn primary" type="submit" data-i18n="scanButton">Analyze target</button>
+        </form>
+
+        <div class="quick-targets">
+          <span data-i18n="quickLabs">Safe labs</span>
+          <button data-url="https://preview.owasp-juice.shop/#/" data-i18n="quickJuice">Juice Shop</button>
+          <button data-url="http://testphp.vulnweb.com" data-i18n="quickVulnweb">VulnWeb</button>
+          <button data-url="https://developers.cloudflare.com" data-i18n="quickCloudflare">Strong example</button>
+        </div>
+      </div>
+
+      <aside class="rules-card">
+        <h2 data-i18n="guardrailsTitle">Lite guardrails</h2>
+        <ul>
+          <li data-i18n="guardrail1">Passive HTTP/TLS review only.</li>
+          <li data-i18n="guardrail2">Read-only same-origin crawler with small limits.</li>
+          <li data-i18n="guardrail3">No fuzzing, payload spraying, brute force or bypass.</li>
+          <li data-i18n="guardrail4">Use only on owned, lab, or explicitly authorized targets.</li>
+        </ul>
+        <div class="mini-stats">
+          <div><b>+Routes</b><span data-i18n="mapHint">Endpoint map included in results.</span></div>
+          <div><b>+Params</b><span data-i18n="parameterHint">Visible parameters are extracted conservatively.</span></div>
+          <div><b>+Forms</b><span data-i18n="formHint">Forms are mapped without submission.</span></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.quick-targets button').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.getElementById('target').value = button.dataset.url;
+      });
+    });
+    document.getElementById('scanForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const target = document.getElementById('target').value.trim();
+      const lang = getLang();
+      location.href = `/results?target=${encodeURIComponent(target)}&lang=${encodeURIComponent(lang)}`;
+    });
+  </script>
+</body>
+</html>

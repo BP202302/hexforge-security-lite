@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HexForge Security Lite</title>
+  <link rel="stylesheet" href="/static.css">
+  <script src="/i18n.js" defer></script>
+</head>
+<body>
+  <div class="ambient-logo"></div>
+  <nav class="nav">
+    <a class="brand" href="/" data-lang-link>
+      <img src="/assets/hexforge-logo.png" alt="HexForge Security logo">
+      <span>
+        <strong>HexForge Security</strong>
+        <small>Lite · Community Edition</small>
+      </span>
+    </a>
+    <div class="links">
+      <a href="/scanner" data-lang-link data-i18n="navScanner">Scanner</a>
+      <a href="#modules" data-i18n="navModules">Modules</a>
+      <a href="#workflow" data-i18n="navWorkflow">Workflow</a>
+      <a href="https://github.com/BP202302/hexforge-security-lite" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">GitHub</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+      <a class="pill glow" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="navSupport">Support</a>
+      <select class="lang-select" data-lang-select onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+        <option value="pt">PT</option>
+        <option value="ja">JA</option>
+        <option value="zh">ZH</option>
+        <option value="ar">AR</option>
+        <option value="hi">HI</option>
+      </select>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero wide-hero">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="heroKicker">LOW-NOISE PASSIVE WEB SECURITY ANALYSIS</span>
+        <h1 data-i18n="heroTitle">Precise findings, clear evidence, mapped surface.</h1>
+        <p data-i18n="heroText">HexForge Security Lite is a defensive scanner focused on configuration, client surface, visible parameters, forms, and conservative evidence for safer manual review.</p>
+        <div class="actions">
+          <a class="btn primary" href="/scanner" data-lang-link data-i18n="startScan">Start scan</a>
+          <a class="btn ghost" href="/results?demo=1" data-lang-link data-i18n="demoResults">View demo</a>
+          <a class="btn soft" href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="openWebsite">HexForgeAI.dev</a>
+          <a class="btn ghost" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="supportProject">Support the project</a>
+        </div>
+      </div>
+
+      <div class="hero-board">
+        <div class="terminal-card">
+          <div class="panel-head"><span></span><span></span><span></span><b>scan-preview.json</b></div>
+<pre>{
+  "version": "1.8.5-community",
+  "risk_score": 3.1,
+  "precision": "low-noise passive analysis",
+  "modules_loaded": 17,
+  "surface_map": ["routes", "forms", "params"],
+  "finding_mode": "evidence + confidence"
+}</pre>
+        </div>
+        <div class="side-stack">
+          <article class="mini-panel brand-panel">
+            <img src="/assets/hexforge-logo.png" alt="HexForge logo emblem">
+            <div>
+              <b>HexForge Lite</b>
+              <small>Passive. Defensive. Structured.</small>
+            </div>
+          </article>
+          <article class="mini-panel">
+            <span class="eyebrow small" data-i18n="surfaceTitle">Visual endpoint map</span>
+            <p data-i18n="surfaceText">Routes, API-like paths, parameters and forms are mapped in a read-only workflow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div><b>16</b><span data-i18n="statModules">focused modules</span></div>
+      <div><b>3x</b><span data-i18n="statValidation">local validation</span></div>
+      <div><b>0</b><span data-i18n="statExploit">exploit actions in Lite</span></div>
+      <div><b>7</b><span>languages</span></div>
+    </section>
+
+    <section id="modules" class="section compact">
+      <span class="eyebrow" data-i18n="sectionChecks">What it checks</span>
+      <h2 data-i18n="sectionSignal">Built for signal, not noise.</h2>
+      <p data-i18n="checksText">Lite reviews headers, cookies, CORS, TLS, redirects, discovery files, metadata, forms, parameters, endpoint routes and passive client surface.</p>
+      <div class="cards three">
+        <article class="card icon-card">
+          <span class="icon">🛡️</span>
+          <h3 data-i18n="cardHeaders">Headers and browser</h3>
+          <p data-i18n="cardHeadersText">CSP, HSTS, Referrer-Policy, Permissions-Policy, X-Content-Type-Options and iframe protection.</p>
+        </article>
+        <article class="card icon-card">
+          <span class="icon">🧭</span>
+          <h3 data-i18n="cardSurface">Crawler and surface map</h3>
+          <p data-i18n="cardSurfaceText">Read-only same-origin crawl, visible routes, API-like paths, query parameters and endpoint mapping without fuzzing.</p>
+        </article>
+        <article class="card icon-card">
+          <span class="icon">📌</span>
+          <h3 data-i18n="cardEvidence">Evidence and translations</h3>
+          <p data-i18n="cardEvidenceText">Every finding includes location, evidence, recommendation, confidence and multi-language rendering.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" class="section split">
+      <div>
+        <span class="eyebrow">Lite workflow</span>
+        <h2 data-i18n="workflowTitle">Scan → Map → Validate → Decide.</h2>
+        <p data-i18n="workflowText">HexForge Lite stays conservative: it fetches safely, maps visible surface, validates findings, and leaves active confirmation to authorized manual review.</p>
+      </div>
+      <div class="timeline">
+        <div><b>01</b><span data-i18n="flow1">Normalize URL</span></div>
+        <div><b>02</b><span data-i18n="flow2">Fetch safely</span></div>
+        <div><b>03</b><span data-i18n="flow3">Map routes and forms</span></div>
+        <div><b>04</b><span data-i18n="flow4">Validate & deduplicate</span></div>
+        <div><b>05</b><span data-i18n="flow5">Render translated report</span></div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-title row">
+        <div>
+          <span class="eyebrow">Lite boundaries</span>
+          <h2 data-i18n="liteBoundaryTitle">Safer by design.</h2>
+          <p data-i18n="liteBoundaryText">The community edition is intentionally useful without becoming an exploit framework.</p>
+        </div>
+      </div>
+      <div class="cards two">
+        <article class="card">
+          <ul class="clean-list">
+            <li data-i18n="boundary1">Passive HTTP/TLS checks</li>
+            <li data-i18n="boundary2">Read-only crawler with small limits</li>
+            <li data-i18n="boundary3">Parameter and form discovery without submission</li>
+            <li data-i18n="boundary4">No brute force, no exploit payload automation</li>
+          </ul>
+        </article>
+        <article class="card support-card inline-card">
+          <div>
+            <h2 data-i18n="supportTitle">Support HexForge development</h2>
+            <p data-i18n="supportText">If HexForge Security Lite helps you, support development or visit the official HexForgeAI website.</p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="openWebsite">HexForgeAI.dev</a>
+            <a class="btn ghost" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="supportProject">Support the project</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>HexForge Security Lite · Open source community edition</span>
+    <div>
+      <a href="/scanner" data-lang-link data-i18n="startScan">Start scan</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+    </div>
+  </footer>
+</body>
+</html>

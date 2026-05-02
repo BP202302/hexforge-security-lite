@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Results · HexForge Security Lite</title>
+  <link rel="stylesheet" href="/static.css">
+  <script src="/i18n.js" defer></script>
+</head>
+<body>
+  <div class="ambient-logo"></div>
+  <nav class="nav">
+    <a class="brand" href="/" data-lang-link>
+      <img src="/assets/hexforge-logo.png" alt="HexForge Security logo">
+      <span><strong>HexForge Security</strong><small>Lite · Results</small></span>
+    </a>
+    <div class="links">
+      <a href="/scanner" data-lang-link data-i18n="runAnother">Run another scan</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+      <a class="pill glow" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="navSupport">Support</a>
+      <select class="lang-select" data-lang-select onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">ES</option><option value="en">EN</option><option value="pt">PT</option><option value="ja">JA</option><option value="zh">ZH</option><option value="ar">AR</option><option value="hi">HI</option>
+      </select>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section results-head compact">
+      <span class="eyebrow" data-i18n="resultsTitle">Analysis report</span>
+      <h1 id="targetText">Loading...</h1>
+      <div id="summary" class="summary-grid"></div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-title row">
+        <div>
+          <span class="eyebrow" data-i18n="surfaceTitle">Visual endpoint map</span>
+          <h2 data-i18n="surfaceText">Routes, API-like paths, parameters and forms extracted in read-only mode.</h2>
+        </div>
+      </div>
+      <div id="surfaceMap" class="surface-grid"></div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-title row">
+        <div>
+          <span class="eyebrow" data-i18n="findings">Findings</span>
+          <h2 data-i18n="evidenceRecommendations">Evidence and recommendations</h2>
+        </div>
+        <a class="btn ghost" href="/scanner" data-lang-link data-i18n="runAnother">Run another scan</a>
+      </div>
+      <div id="findings" class="findings-list"></div>
+    </section>
+  </main>
+
+  <script src="/results.js"></script>
+</body>
+</html>
