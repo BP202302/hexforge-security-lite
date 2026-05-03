@@ -1,8 +1,9 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
 
 
 def normalize_url(url: str) -> str:
     url = (url or "").strip()
+
     if not url:
         return ""
 
@@ -10,11 +11,9 @@ def normalize_url(url: str) -> str:
         url = "https://" + url
 
     parsed = urlparse(url)
-    if not parsed.netloc:
-        return url
 
     scheme = parsed.scheme or "https"
     netloc = parsed.netloc.lower()
-    path = parsed.path or ""
+    path = parsed.path or "/"
 
-    return f"{scheme}://{netloc}{path}"
+    return urlunparse((scheme, netloc, path, "", parsed.query, ""))
