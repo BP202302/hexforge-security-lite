@@ -20,7 +20,7 @@
 
 <p>
   <img src="https://img.shields.io/badge/Version-1.9.0--stable-FFB000?style=flat-square">
-  <img src="https://img.shields.io/badge/Edition-Lite%20Community-2ECC71?style=flat-square">
+  <img src="https://img.shields.io/badge/Edition-Lite%20Source--Available-2ECC71?style=flat-square">
   <img src="https://img.shields.io/badge/Mode-Passive%20Analysis-00D4FF?style=flat-square">
   <img src="https://img.shields.io/badge/Focus-Defensive%20Review-8A63FF?style=flat-square">
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white">
@@ -28,9 +28,12 @@
 
 <br>
 
-**HexForge Security Lite** is a defensive, passive web security scanner built to turn visible web signals into clear, structured, human-readable findings.
+**HexForge Security Lite** is a source-available Lite edition for passive web security analysis.  
+It transforms visible web signals into structured findings with evidence, confidence, severity and recommendations.
 
-It focuses on **evidence**, **clarity**, and **safe review workflows** instead of noisy aggressive automation.
+Built for clarity.  
+Built for defensive review.  
+Built for signal, not noise.
 
 </div>
 
@@ -40,45 +43,48 @@ It focuses on **evidence**, **clarity**, and **safe review workflows** instead o
 
 | Section | Description |
 |---|---|
-| [What is HexForge Lite?](#-what-is-hexforge-security-lite) | Product overview |
-| [Live Demo](#-live-demo) | Try the hosted version |
-| [Core Philosophy](#-core-philosophy) | Why Lite exists |
-| [What It Checks](#-what-it-checks) | Main detection areas |
-| [How It Works](#-how-it-works) | Internal workflow |
+| [Overview](#-overview) | What HexForge Lite is |
+| [Live Demo](#-live-demo) | Hosted Render demo |
+| [Screenshots](#-screenshots) | Place for visual proof |
+| [Core Philosophy](#-core-philosophy) | Why this tool exists |
+| [What It Checks](#-what-it-checks) | Detection areas |
+| [How It Works](#-how-it-works) | Scanner workflow |
+| [Report Format](#-report-format) | How findings are presented |
 | [Architecture](#-architecture) | Project structure |
 | [Quick Start](#-quick-start) | Run locally |
-| [API](#-api) | Programmatic usage |
-| [Safety Boundaries](#-safety-boundaries) | What Lite will not do |
-| [Roadmap](#-roadmap) | Where the project is going |
-| [Support](#-support-the-project) | Help development continue |
+| [API](#-api) | API routes |
+| [Safety Boundaries](#-safety-boundaries) | What Lite does and does not do |
+| [Roadmap](#-roadmap) | Future direction |
+| [Support](#-support-the-project) | Support development |
 
 ---
 
-# 🛡️ What is HexForge Security Lite?
+# 🛡️ Overview
 
-**HexForge Security Lite** is a lightweight web security analysis tool designed for:
+**HexForge Security Lite** is a lightweight defensive scanner focused on passive web security review.
 
-- developers
-- students
-- security learners
-- small teams
-- blue team workflows
-- defensive review
-- controlled labs
-- portfolio demonstrations
-- passive web visibility
+It helps identify visible security signals such as:
 
-It analyzes a target from a **read-only perspective** and produces a structured report with findings, severity, confidence, evidence and recommendations.
+- missing browser hardening headers
+- HTTPS and transport configuration gaps
+- cookie attribute weaknesses
+- permissive CORS behavior
+- client-side API references
+- visible routes
+- forms
+- parameters
+- discovery files
+- metadata exposure
+- passive surface clues
 
-The goal is simple:
-
-> **Show what is visible. Explain why it matters. Keep the workflow safe.**
+The goal is not to overwhelm users with noise.  
+The goal is to produce readable findings that explain what was observed and why it matters.
 
 ---
 
 # 🚀 Live Demo
 
-You can test the hosted community edition here:
+Try the hosted version:
 
 <p align="center">
   <a href="https://hexforge-security-lite.onrender.com">
@@ -86,7 +92,7 @@ You can test the hosted community edition here:
   </a>
 </p>
 
-Main routes:
+Useful routes:
 
 ```text
 /
@@ -97,51 +103,82 @@ Main routes:
  /api/scan
 ```
 
-Recommended first test target:
+Recommended safe test target:
 
 ```text
 https://example.com
 ```
 
-For security practice labs, you can test with authorized environments such as OWASP Juice Shop or your own deployed applications.
+For security learning, use targets you own or intentionally vulnerable labs that you are authorized to test.
+
+---
+
+# 🖼️ Screenshots
+
+<!-- Agregar fotos -->
+
+Recommended screenshot files:
+
+```text
+screenshots/landing.png
+screenshots/scanner.png
+screenshots/report-overview.png
+screenshots/evidence-recommendations.png
+```
+
+Suggested layout after uploading screenshots:
+
+```markdown
+<p align="center">
+  <img src="screenshots/landing.png" width="100%" alt="HexForge Lite landing page">
+</p>
+
+<p align="center">
+  <img src="screenshots/report-overview.png" width="100%" alt="HexForge Lite report overview">
+</p>
+
+<p align="center">
+  <img src="screenshots/evidence-recommendations.png" width="100%" alt="HexForge Lite evidence and recommendations">
+</p>
+```
 
 ---
 
 # 🧠 Core Philosophy
 
-HexForge Lite is built around a different idea from noisy scanners.
+HexForge Lite is designed around one principle:
+
+> Clear evidence is more useful than loud output.
 
 ## Signal over noise
 
-Not every observation deserves to become an alarm.  
-Lite attempts to keep results readable and review-oriented.
+Not every observation should become a panic alert.  
+HexForge Lite focuses on practical signals that help the user review security posture.
 
 ## Evidence before hype
 
-Every finding should answer:
+Every useful finding should answer:
 
 | Question | Purpose |
 |---|---|
-| What was observed? | Shows the raw security signal |
-| Where was it found? | Gives context |
-| Why does it matter? | Explains impact |
-| What should be reviewed? | Guides next step |
-| How confident is it? | Avoids exaggeration |
+| What was observed? | Shows the exact signal |
+| Where was it found? | Gives location and context |
+| Why does it matter? | Explains the security meaning |
+| What should be reviewed? | Provides the next step |
+| How confident is it? | Avoids overclaiming |
 
 ## Passive before aggressive
 
-The Lite edition is intentionally conservative.  
-It is useful without becoming a destructive framework.
+HexForge Lite is intentionally conservative.  
+It performs safe, read-only analysis and avoids destructive behavior.
 
 ---
 
 # 🔍 What It Checks
 
-HexForge Lite focuses on visible web security signals.
+## Browser hardening headers
 
-## Browser security headers
-
-Reviews common browser-facing protections such as:
+HexForge Lite reviews visible browser-facing headers such as:
 
 - Content-Security-Policy
 - Strict-Transport-Security
@@ -150,43 +187,55 @@ Reviews common browser-facing protections such as:
 - X-Content-Type-Options
 - frame and iframe protection indicators
 
-## HTTP and TLS posture
+## HTTP and HTTPS posture
 
-Observes:
+The scanner observes:
 
+- HTTP status
 - HTTPS usage
 - redirect behavior
-- exposed response metadata
-- transport-related hints
-- configuration gaps visible from the client side
+- transport hints
+- response metadata
+- visible configuration gaps
 
-## Cookies and session surface
+## Cookies
 
-Checks observable cookie attributes such as:
+HexForge Lite checks observable cookie attributes including:
 
 - Secure
 - HttpOnly
 - SameSite
-- scope and exposure hints
+- cookie scope
+- client-visible session posture
 
-## CORS behavior
+## CORS
 
-Identifies permissive CORS patterns and separates critical signals from review-only observations.
+The scanner can identify permissive CORS patterns and classify them as review-oriented findings when context is required.
 
 ## Client-side surface
 
-Extracts visible references from HTML and scripts:
+HexForge Lite extracts visible client-side references such as:
 
 - routes
+- scripts
 - API-like paths
 - forms
 - parameters
-- visible endpoints
-- client-referenced paths
+- linked resources
+- same-origin references
 
 ## Forms and parameters
 
-Maps visible input surfaces without submitting destructive payloads.
+The scanner maps visible forms and parameters without submitting exploit payloads.
+
+## Discovery files
+
+Depending on the deployed version and modules, Lite may observe common discovery resources such as:
+
+- robots.txt
+- sitemap.xml
+- security.txt
+- visible metadata files
 
 ---
 
@@ -217,24 +266,26 @@ Risk Scoring
 Human-Readable Report
 ```
 
+HexForge Lite does not try to prove exploitation automatically.  
+It collects visible signals and presents them in a structured way for review.
+
 ---
 
-# 📊 Report Style
+# 📊 Report Format
 
-HexForge Lite reports are designed to be readable.
-
-A result can include:
+A HexForge Lite finding can include:
 
 | Field | Meaning |
 |---|---|
 | Severity | Critical, high, medium, low or informational |
 | Confidence | How reliable the observation is |
-| Evidence | What the scanner actually saw |
 | Location | Where the signal appeared |
-| Recommendation | What the user should review or improve |
-| Precision note | Why the finding should not be overclaimed |
+| Evidence | What was actually observed |
+| Recommendation | What should be reviewed or improved |
+| Precision note | Why the finding should not be exaggerated |
+| Rule ID | Internal reference for the finding |
 
-Example finding style:
+Example:
 
 ```text
 Finding: Missing browser hardening headers
@@ -242,8 +293,8 @@ Severity: Medium
 Confidence: High
 Location: HTTP response headers
 Evidence: Missing Content-Security-Policy, Referrer-Policy, Permissions-Policy
-Recommendation: Add browser hardening headers based on application behavior.
-Precision: Confirmed from response headers, but final impact depends on application context.
+Recommendation: Add browser hardening headers based on the needs of the application.
+Precision: Confirmed from the HTTP response, but final impact depends on application behavior.
 ```
 
 ---
@@ -261,6 +312,9 @@ hexforge-security-lite/
 ├── assets/
 │   └── branding and visual resources
 │
+├── benchmarks/
+│   └── benchmark material
+│
 ├── cli/
 │   └── command line entrypoints
 │
@@ -273,6 +327,9 @@ hexforge-security-lite/
 ├── examples/
 │   └── usage examples
 │
+├── frontend/
+│   └── frontend resources
+│
 ├── hexforge_lite/
 │   ├── engine/
 │   ├── modules/
@@ -284,6 +341,18 @@ hexforge-security-lite/
 │   ├── fetcher.py
 │   ├── models.py
 │   └── plugins.py
+│
+├── lab/
+│   └── lab resources
+│
+├── plugins/
+│   └── external or experimental plugin resources
+│
+├── rules/
+│   └── rule references
+│
+├── screenshots/
+│   └── visual proof and README images
 │
 ├── scripts/
 │   └── automation and checks
@@ -324,7 +393,7 @@ Open:
 http://127.0.0.1:10000
 ```
 
-If your environment uses a different port, check your terminal output.
+If a different port is configured, use the port shown in your terminal.
 
 ---
 
@@ -344,7 +413,7 @@ docker build -t hexforge-security-lite .
 docker run -p 10000:10000 hexforge-security-lite
 ```
 
-Then open:
+Open:
 
 ```text
 http://127.0.0.1:10000
@@ -409,7 +478,7 @@ Run self-checks if available:
 python3 -B scripts/self_check.py
 ```
 
-Recommended before every release:
+Recommended before a release:
 
 ```bash
 python3 -B -m unittest discover tests
@@ -420,7 +489,7 @@ python3 -B scripts/self_check.py
 
 # 🧩 Lite Modules
 
-HexForge Lite can include modules for:
+HexForge Lite can include passive modules for:
 
 | Module Area | Purpose |
 |---|---|
@@ -433,21 +502,23 @@ HexForge Lite can include modules for:
 | Parameters | Query and client-side parameter detection |
 | Routes | Visible path extraction |
 | API-like references | Client-side endpoint discovery |
+| Comments | Passive review of visible HTML comments |
+| Metadata | HTML and response metadata review |
 | Report output | Structured result rendering |
 
 ---
 
 # 🧠 Result Interpretation
 
-HexForge Lite findings should be treated as **review guidance**, not automatic proof of exploitation.
+HexForge Lite findings are review guidance, not automatic proof of exploitability.
 
 A missing header may be important.  
 A permissive CORS policy may require more context.  
 A visible route may be normal or sensitive depending on the application.  
 A client-side endpoint may be expected, internal, deprecated or worth reviewing.
 
-The scanner gives you the signal.  
-The analyst decides the final impact.
+The scanner provides the signal.  
+The reviewer decides the final impact.
 
 ---
 
@@ -474,6 +545,7 @@ HexForge Security Lite is intentionally limited.
 - destructive exploitation
 - unauthorized bypass attempts
 - heavy fuzzing
+- exploit chaining
 - payload automation against third-party targets
 - intrusive vulnerability exploitation
 
@@ -485,7 +557,7 @@ Use only on systems you own, manage, or have explicit permission to review.
 
 ## Developer review
 
-Check whether a web app exposes basic configuration weaknesses before publishing.
+Check whether a web app exposes visible configuration weaknesses before publishing.
 
 ## Security learning
 
@@ -503,21 +575,32 @@ Show a real security tool with UI, API, reports and deployable architecture.
 
 Perform quick passive review of visible posture and browser-facing configuration.
 
+## Pre-audit preparation
+
+Collect visible findings before deeper manual validation.
+
 ---
 
-# 🧱 Design Language
+# 🏗️ Product Positioning
 
-HexForge Lite uses a dark, technical interface designed around:
+HexForge Lite is the public Lite edition of the HexForge ecosystem.
 
-- strong contrast
-- report cards
-- severity labels
-- structured evidence
-- readable sections
-- visual endpoint mapping
-- low-noise presentation
+| Edition | Purpose |
+|---|---|
+| Lite | Public source-available defensive scanner |
+| Pro | Future advanced individual workflow |
+| Specter | Future premium or enterprise direction |
 
-The interface is built to feel like a security console, but still remain understandable.
+The Lite repository should remain:
+
+```text
+Clean.
+Safe.
+Readable.
+Public-facing.
+Useful.
+Non-destructive.
+```
 
 ---
 
@@ -526,12 +609,10 @@ The interface is built to feel like a security console, but still remain underst
 | Version | Focus |
 |---|---|
 | v1.9.x | Stabilization, cleanup, documentation and demo polish |
-| v2.x | Better reporting, stronger module organization, improved CLI |
-| v3.x | More visual mapping, richer exports and better developer workflows |
-| Pro track | Separate private/commercial direction |
-| Specter track | Advanced premium/enterprise direction |
-
-Lite should remain clean, public and community-friendly.
+| v2.x | Better reports, stronger module organization and improved CLI |
+| v3.x | Visual mapping, richer exports and deeper workflow support |
+| Pro track | Separate private or commercial direction |
+| Specter track | Premium or enterprise direction |
 
 ---
 
@@ -551,28 +632,14 @@ Create tag
 Create release ZIP
 ```
 
-Suggested release naming:
+Suggested release names:
 
 ```text
+v1.9.0-stable
 v1.9.1-clean
 v1.9.2-stable
-v2.0.0-community
+v2.0.0-lite
 ```
-
----
-
-# 🏗️ Product Positioning
-
-HexForge Lite is not just a script.  
-It is the public foundation of a larger security product ecosystem.
-
-| Edition | Purpose |
-|---|---|
-| Lite | Public community edition |
-| Pro | Future advanced individual edition |
-| Specter | Future premium / enterprise direction |
-
-The Lite repository should stay clean, safe and trustworthy.
 
 ---
 
@@ -644,11 +711,21 @@ Official site:
 
 # ⚖️ Responsible Use
 
-This project is intended for educational, defensive and authorized security review.
+HexForge Security Lite is intended for educational, defensive and authorized security review.
 
-Do not use HexForge Security Lite against systems without permission.
+Do not use this tool against systems without permission.
 
 You are responsible for your own usage.
+
+---
+
+# 📄 License and Usage
+
+HexForge Security Lite is a source-available Lite edition.
+
+Review the repository license before using, modifying, redistributing or deploying this software.
+
+Commercial use may require explicit permission depending on the license terms.
 
 ---
 
