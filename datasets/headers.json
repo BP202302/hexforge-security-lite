@@ -1,0 +1,10 @@
+{
+  "required": [
+    "content-security-policy",
+    "x-content-type-options",
+    "referrer-policy",
+    "permissions-policy"
+  ],
+  "transport": ["strict-transport-security"],
+  "note": "HSTS is evaluated separately to avoid duplicate header findings."
+}
