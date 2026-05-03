@@ -40,3 +40,6 @@ def html_line_for(html: str, needle: str) -> str:
         pass
 
     return ""
+
+def compact_text(value: str) -> str:
+    return " ".join((value or "").split())
