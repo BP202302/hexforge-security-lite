@@ -1,295 +1,582 @@
 <div align="center">
 
-```
-██╗  ██╗███████╗██╗  ██╗███████╗ ██████╗ ██████╗  ██████╗ ███████╗
-██║  ██║██╔════╝╚██╗██╔╝██╔════╝██╔═══██╗██╔══██╗██╔════╝ ██╔════╝
-███████║█████╗   ╚███╔╝ █████╗  ██║   ██║██████╔╝██║  ███╗█████╗  
-██╔══██║██╔══╝   ██╔██╗ ██╔══╝  ██║   ██║██╔══██╗██║   ██║██╔══╝  
-██║  ██║███████╗██╔╝ ██╗██║     ╚██████╔╝██║  ██║╚██████╔╝███████╗
-╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
-```
+# HexForge Security Lite
 
-### `SECURITY · LITE · v1.9.0-stable`
+### Low-noise passive security analysis for developers, researchers and blue teams.
 
-**Low-noise. Evidence-first. Defensively sharp.**
+<p>
+  <img src="assets/logo/hexforge-logo.png" alt="HexForge Security Logo" width="120">
+</p>
 
-[![CI](https://github.com/BP202302/hexforge-security-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/BP202302/hexforge-security-lite/actions/workflows/ci.yml)
-![Status](https://img.shields.io/badge/status-stable-00ff88?style=flat-square)
-![Lang](https://img.shields.io/badge/python-3.x-cyan?style=flat-square)
-![License](https://img.shields.io/badge/license-see%20LICENSE-blue?style=flat-square)
+<p>
+  <a href="https://hexforge-security-lite.onrender.com"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open-blue?style=for-the-badge"></a>
+  <a href="https://github.com/BP202302/hexforge-security-lite"><img alt="GitHub Repo" src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v1.9.0--stable-orange?style=for-the-badge">
+  <img alt="Edition" src="https://img.shields.io/badge/Edition-Community-green?style=for-the-badge">
+</p>
 
-<br>
-
-[**→ Live Demo**](https://hexforge-security-lite.onrender.com) · [**→ Official Site**](https://hexforgeai.dev/) · [**→ GitHub**](https://github.com/BP202302/hexforge-security-lite) · [**→ Support**](https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES)
+<p>
+  <a href="#-overview">Overview</a> •
+  <a href="#-screenshots">Screenshots</a> •
+  <a href="#-key-capabilities">Capabilities</a> •
+  <a href="#-how-it-works">How it Works</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-api">API</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-safety-boundaries">Safety</a> •
+  <a href="#-support-the-project">Support</a>
+</p>
 
 </div>
 
------
+---
 
-## ░░ WHAT IS THIS
+## Overview
 
-> Most free web scanners are noise machines or blunt hammers.
-> HexForge Lite is neither.
+**HexForge Security Lite** is a **community edition passive security analysis platform** built to generate **signal instead of noise**.
 
-Built for a different lane — **map clearly, report only what can be evidenced, guide safe manual review without inflating risk.**
+It helps you inspect web targets through **safe, read-only, evidence-first analysis**, focusing on:
 
-Not a replacement for manual testing. A force multiplier for the first phase.
+- HTTP security headers
+- TLS and transport clues
+- cookies and browser-facing configuration
+- surface mapping
+- client-side referenced API routes
+- forms and parameters
+- passive findings with explanations and recommendations
+- multilingual presentation and readable reports
 
------
+> HexForge Lite is not designed to be a destructive offensive framework.  
+> It is designed to help users **observe, map, validate and review**.
 
-## ░░ QUICK START
+---
 
-### Docker
+## Why HexForge Lite?
+
+Most tools either:
+- overwhelm the user with raw noise,
+- behave too aggressively,
+- or require a heavyweight stack for basic visibility.
+
+HexForge Lite aims to be different:
+
+- **Low-noise**
+- **Passive by design**
+- **Readable evidence**
+- **Human-friendly recommendations**
+- **Community edition ready**
+- **Fast to deploy**
+- **Simple to test**
+- **Useful for demos, labs and learning**
+
+---
+
+## Screenshots
+
+### 1) Analysis report overview
+A clean summary showing risk score, total findings, confidence and passive analysis context.
+
+<p align="center">
+  <img src="screenshots/report-overview.png" alt="HexForge report overview" width="100%">
+</p>
+
+---
+
+### 2) Evidence and recommendations
+Each finding includes context, evidence, recommendation and precision notes.
+
+<p align="center">
+  <img src="screenshots/evidence-recommendations.png" alt="HexForge evidence and recommendations" width="100%">
+</p>
+
+---
+
+### 3) Community workflow and philosophy
+The platform is built around a clear flow: **scan → map → validate → decide**.
+
+<p align="center">
+  <img src="screenshots/workflow-community.png" alt="HexForge workflow and community edition" width="100%">
+</p>
+
+---
+
+## Key Capabilities
+
+### Passive analysis engine
+HexForge Lite performs **passive web inspection** and avoids turning the tool into an unsafe attack framework.
+
+### Evidence-first findings
+Every finding is built to be understandable, not just listed.
+
+Each result can include:
+- title
+- severity
+- confidence
+- location
+- evidence
+- recommendation
+- precision note
+- rule ID / internal reference
+
+### Surface mapping
+Lite can extract and organize:
+- visible routes
+- client-referenced API-like paths
+- parameters
+- forms
+- basic surface signals from the target
+
+### Community edition workflow
+HexForge Lite is especially useful for:
+- labs
+- personal learning
+- secure demos
+- controlled review targets
+- documentation and showcase use cases
+
+### Render-friendly deployment
+The project can be deployed as a lightweight web service and tested quickly.
+
+---
+
+## Feature Highlights
+
+| Area | What HexForge Lite does |
+|------|--------------------------|
+| Headers & browser security | Reviews CSP, HSTS, Referrer-Policy, Permissions-Policy, X-Content-Type-Options and related controls |
+| Surface mapping | Extracts visible routes, client-side API references, forms and parameters |
+| Transport clues | Observes secure transport hints and configuration gaps |
+| Evidence quality | Shows readable findings instead of only raw data |
+| Reporting | Renders human-friendly result pages |
+| Usability | Easy web UI + API style workflow |
+| Philosophy | Low-noise, passive, safe-by-design |
+
+---
+
+## How it Works
+
+HexForge Lite follows a simple operational model:
+
+### 1. Normalize target
+The tool prepares and normalizes the input URL.
+
+### 2. Safely fetch the target
+The platform performs read-only retrieval and collects observable data.
+
+### 3. Map visible surface
+Routes, forms, parameters and client-side references are gathered.
+
+### 4. Validate and deduplicate
+Signals are checked, grouped and cleaned to reduce repeated noise.
+
+### 5. Render the report
+The result is presented in a report made for humans, not just scripts.
+
+---
+
+## Lite Workflow
+
+```text
+Normalize URL
+      ↓
+Safe Retrieval
+      ↓
+Passive Mapping
+      ↓
+Validation & Deduplication
+      ↓
+Readable Evidence Report
+```
+
+---
+
+## What Makes It Different?
+
+### Signal over noise
+Many scanners generate too much friction for too little clarity.  
+HexForge Lite tries to deliver **structured clarity**.
+
+### Readability matters
+The report output is designed to help both:
+- technical users
+- and people who need a quick explanation of what was found
+
+### Safer by design
+The Lite edition is intentionally limited to avoid becoming an unsafe offensive tool.
+
+---
+
+## Safety Boundaries
+
+HexForge Lite is built to remain useful **without becoming reckless**.
+
+### Included in Lite
+- passive HTTP/TLS inspection
+- read-only mapping
+- browser security header checks
+- discovery of client-side references
+- simple, safe surface observation
+- report rendering
+
+### Not the goal of Lite
+- brute force
+- credential attacks
+- fuzzing frameworks
+- destructive exploitation
+- authentication bypass attempts
+- payload launching against third-party systems
+- “spray and pray” offensive automation
+
+> Always use HexForge Lite only on systems you own or are explicitly authorized to assess.
+
+---
+
+## Quick Start
+
+### Option A — Local run
 
 ```bash
-docker build -t hexforge-security-lite .
-docker run --rm -p 8000:8000 hexforge-security-lite
+git clone https://github.com/BP202302/hexforge-security-lite.git
+cd hexforge-security-lite
+pip install -r requirements.txt
+python3 server.py
 ```
 
-```
-→ open http://127.0.0.1:8000
+Then open:
+
+```text
+http://127.0.0.1:10000
 ```
 
-### Local
+or the configured port in your environment.
+
+---
+
+### Option B — Docker
 
 ```bash
-python3 -B server.py
+docker build -t hexforge-lite .
+docker run -p 10000:10000 hexforge-lite
 ```
 
-```
-→ open http://127.0.0.1:8000
-```
+---
 
-### No install — try now
+### Option C — Render deployment
+If you deploy on Render, once the service is live, open:
 
-```
+```text
 https://hexforge-security-lite.onrender.com
 ```
 
-> ⚠️ Authorized targets only. Labs, your own systems, explicit scope.
+---
 
------
+## Basic Usage
 
-## ░░ WHAT MAKES IT DIFFERENT
+### Web UI
+1. Open the app
+2. Go to the scanner
+3. Enter an authorized target URL
+4. Start the scan
+5. Review the report, evidence and recommendations
 
-```
-◆  LOW-NOISE FINDINGS      Conservative severity · confidence labels · precision notes
-◆  VISUAL ENDPOINT MAP     Routes · API paths · params · forms · scripts · HTTP methods  
-◆  SAFE LITE PLUGINS       Opt-in passive plugins wired into the real scan pipeline
-◆  DATASETS AT RUNTIME     Headers · CORS patterns · severity profiles — not decorative
-◆  API THAT WORKS          /api/scan · /api/meta · /health — actually wired
-◆  SEMI-ACTIVE CONTROL     One safe OPTIONS probe. Maps methods. Zero mutation.
-◆  INTERNATIONAL UI        ES · EN · PT · JA · ZH · AR · HI
-```
+### Typical paths
+Depending on your deployed version, useful routes may include:
 
------
-
-## ░░ SAFETY BOUNDARY
-
-<table>
-<tr>
-<td width="50%">
-
-### ✅ LITE DOES
-
-- Passive HTTP / TLS analysis
-- Read visible HTML, headers, client refs
-- Map routes, params, forms, scripts (read-only)
-- One safe `OPTIONS` probe
-- Load local `lite_safe = True` plugins
-- Support authorized recon & bug bounty
-
-</td>
-<td width="50%">
-
-### ❌ LITE DOES NOT
-
-- Brute force
-- Fuzz aggressively
-- Submit exploit payloads
-- Bypass authentication
-- Execute destructive requests
-- Claim exploitability without proof
-
-</td>
-</tr>
-</table>
-
------
-
-## ░░ DETECTION PIPELINE
-
-```
-[1] Normalize authorized target URL
-[2] Fetch initial response — safely
-[3] Run focused modules
-[4] Execute Lite-safe plugins
-[5] Map visible client surface
-[6] Single safe HTTP method probe
-[7] Validate + deduplicate findings
-[8] Score conservatively
-[9] Render evidence · confidence · precision notes
+```text
+/
+ /scanner
+ /results
+ /health
+ /api/meta
+ /api/scan
 ```
 
------
+---
 
-## ░░ BUILT-IN MODULES
+## Example Use Cases
 
+HexForge Lite can be useful for:
+
+- reviewing a lab target before deeper analysis
+- checking passive security posture of a personal web app
+- mapping client-exposed routes and forms
+- building demonstration material
+- learning basic web security observation
+- showing structured security findings to non-specialists
+
+---
+
+## Example Findings
+
+A report may detect issues such as:
+
+- missing browser hardening headers
+- missing HSTS on HTTPS targets
+- permissive CORS behavior
+- exposed client-side API route references
+- visible parameters or forms worth review
+- transport or browser-facing configuration gaps
+
+Each finding is meant to answer:
+- **What was observed?**
+- **Where was it observed?**
+- **Why does it matter?**
+- **What should be reviewed next?**
+
+---
+
+## API
+
+### Health check
+
+```http
+GET /health
 ```
-security headers          clickjacking protection     CORS policy
-cookie flags              cache policy                redirect policy
-content type              metadata exposure           HTML comments
-email/token exposure      external resources          mixed content
-forms basics              client surface mapping      JS surface analyzer
-robots/sitemap            security.txt                HTTP methods probe
-TLS basics                safe Lite plugins
+
+### Metadata
+
+```http
+GET /api/meta
 ```
 
------
+### Launch scan
 
-## ░░ ARCHITECTURE
-
+```http
+POST /api/scan
+Content-Type: application/json
 ```
+
+Example payload:
+
+```json
+{
+  "target": "https://example.com"
+}
+```
+
+---
+
+## Architecture
+
+Below is the conceptual architecture of HexForge Security Lite:
+
+```text
+User / Browser
+      │
+      ▼
+   Web UI
+      │
+      ▼
+   server.py
+      │
+      ├── API layer
+      ├── Report rendering
+      └── Scan orchestration
+              │
+              ▼
+       hexforge_lite/
+              │
+              ├── engine/
+              ├── modules/
+              ├── utils/
+              ├── validators/
+              ├── scoring/
+              ├── output/
+              ├── config.py
+              ├── fetcher.py
+              ├── models.py
+              └── plugins.py
+```
+
+### Architectural philosophy
+
+HexForge Lite is organized to keep the project:
+
+- modular
+- explainable
+- testable
+- lightweight
+- demo-friendly
+- extensible for future editions
+
+---
+
+## Repository Structure
+
+```text
 hexforge-security-lite/
+├── api/
+├── assets/
+├── benchmarks/
+├── cli/
+├── datasets/
+├── docs/
+├── examples/
+├── frontend/
 ├── hexforge_lite/
-│   ├── engine/          ← scan orchestration
-│   ├── modules/         ← passive + Lite-safe modules
-│   ├── validators/      ← anti-noise validation layer
-│   ├── scoring/         ← conservative risk scoring
-│   ├── output/          ← report ordering/formatting
-│   ├── datasets.py      ← runtime dataset loader
-│   └── plugins.py       ← safe Lite plugin loader
-├── api/                 ← routing and handlers
-├── cli/                 ← command-line usage
-├── datasets/            ← runtime JSON profiles
-├── plugins/             ← Lite plugin examples
-├── website/             ← product-style UI
-└── tests/               ← unit tests
+│   ├── engine/
+│   ├── modules/
+│   ├── output/
+│   ├── scoring/
+│   ├── utils/
+│   ├── validators/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── fetcher.py
+│   ├── models.py
+│   └── plugins.py
+├── scripts/
+├── screenshots/
+├── tests/
+├── website/
+├── Dockerfile
+├── requirements.txt
+├── run.sh
+└── server.py
 ```
 
------
+---
 
-## ░░ RUNTIME DATASETS
+## Project Principles
 
-```bash
-datasets/headers.json
-datasets/cors_patterns.json
-datasets/severity_profiles.json
-```
+HexForge Security Lite follows these principles:
 
-Consumed by `modules.headers` · `modules.cors` · `scoring.risk`
-Not decorative. Actually running.
+- **clarity before complexity**
+- **evidence before hype**
+- **passive before aggressive**
+- **community access before vendor lock-in**
+- **readability before raw volume**
+- **clean reporting before dashboard clutter**
 
------
+---
 
-## ░░ LITE PLUGINS
+## Community Edition Positioning
 
-A plugin must:
+HexForge Lite is the accessible public-facing edition of the HexForge ecosystem.
 
-```python
-class MyPlugin(BaseModule):
-    lite_safe = True   # ← required
+It is ideal for:
+- public repo visibility
+- portfolio credibility
+- demos
+- community adoption
+- educational use
+- trust building before advanced editions
 
-    def run(self):
-        # passive only. read-only. structured findings.
-        ...
-```
+---
 
-Load from `plugins/examples/` — disable with:
+## Planned Evolution
 
-```bash
-HEXFORGE_ENABLE_PLUGINS=0 python3 server.py
-```
+The broader ecosystem can evolve with separate editions such as:
 
------
+- **HexForge Lite** → community / public / safe passive edition
+- **HexForge Pro** → advanced individual workflow edition
+- **HexForge Specter** → premium/private/enterprise-grade direction
 
-## ░░ API
+> Keep advanced commercial functionality outside the Lite public repository.
 
-```bash
-# Health
-curl http://127.0.0.1:8000/health
+---
 
-# Metadata
-curl http://127.0.0.1:8000/api/meta
+## Recommended README Enhancements for Maximum Credibility
 
-# Scan
-curl -X POST http://127.0.0.1:8000/api/scan \
-  -H "Content-Type: application/json" \
-  -d '{"url":"https://example.com"}'
-```
+To make this repository look even stronger over time, keep adding:
 
-Rate-limited. Size-limited. Not decorative.
+- real screenshots
+- release notes
+- changelog entries
+- demo links
+- known limitations
+- roadmap
+- test results
+- benchmarks
+- architecture docs
 
------
+---
 
-## ░░ CLI
+## Known Limitations
 
-```bash
-python3 -B cli/hexforge.py https://example.com
-```
+HexForge Lite is intentionally constrained.
 
------
+This means:
+- it will not behave like a full offensive platform
+- some findings are informational or review-oriented
+- deeper verification is often left to authorized manual analysis
+- passive evidence does not always prove exploitability
 
-## ░░ QUALITY
+This is not a weakness of the concept.  
+It is part of the **Lite edition design philosophy**.
 
-```bash
-python3 -B -m unittest discover tests
-python3 -B scripts/self_check.py
-```
+---
 
-Self-check validates **14 controlled lab profiles** across **3 passes**.
+## Support the Project
 
------
+If you want to support the development of HexForge Security Lite, you can add a donation or support link here.
 
-## ░░ VALIDATED TARGETS
+### Example buttons
 
-```
-✓ your own applications          ✓ staging environments
-✓ internal labs                  ✓ OWASP Juice Shop
-✓ DVWA                           ✓ WebGoat
-✓ VulnWeb
-```
+<p>
+  <a href="https://hexforgeai.dev" target="_blank">
+    <img alt="Official Site" src="https://img.shields.io/badge/Official%20Site-HexForgeAI.dev-0A66C2?style=for-the-badge">
+  </a>
+  <a href="https://paypal.me/YOURUSER" target="_blank">
+    <img alt="PayPal" src="https://img.shields.io/badge/Support-PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white">
+  </a>
+  <a href="https://discord.gg/YOURINVITE" target="_blank">
+    <img alt="Discord" src="https://img.shields.io/badge/Community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+  </a>
+</p>
 
-> Do not use on systems you don’t own or have explicit authorization for.
+> Replace the placeholder links with your real URLs.
 
------
+---
 
-## ░░ RELEASE NOTES — v1.9.0
+## Contributing
 
-```diff
-+ Dockerfile + .dockerignore for clean deployment
-+ Working Lite-safe example plugin (HF-PLUGIN-001)
-+ Severity donut chart on results page (vanilla HTML/CSS/JS)
-+ One-click JSON report copy
-+ Animated progress feedback during scan
-+ "How it works" section on homepage
-+ Subtle animated hacker ambience — no external assets
-+ /api/scan and /api/meta documented
-+ JS Surface Analyzer — maps client endpoints, redacts sensitive IDs
-+ Pro/Specter optional waitlist via /api/waitlist (explicit consent)
-```
+Contributions are welcome if they align with the Lite philosophy.
 
------
+Good contribution areas:
+- UI improvements
+- report readability
+- passive checks
+- validators
+- documentation
+- tests
+- translations
+- bug fixes
 
-## ░░ POSITIONING
+---
 
-```
-HexForge Lite  →  free · community · accurate surface mapping · conservative evidence
-HexForge Pro   →  authenticated workflows · deeper active validation · logic testing
-HexForge Specter →  high-scale recon · exploitation chains · role-aware analysis
-```
+## Legal & Responsible Use
 
------
+HexForge Security Lite is provided for educational, defensive and authorized assessment contexts.
+
+You are responsible for how you use this software.  
+Do not use it against targets without permission.
+
+---
+
+## Final Message
+
+HexForge Security Lite is not trying to be the loudest tool.  
+It is trying to be the **clearest**.
+
+It is built for users who value:
+- cleaner reporting
+- safer defaults
+- visible evidence
+- practical results
+- and a better bridge between raw signals and real understanding
+
+---
 
 <div align="center">
 
-**HexForge Security Lite** — community edition.
+### HexForge Security Lite — Built for signal, not noise.
 
-Use it on what you own. Report what you can evidence. Stay in scope.
-
------
-
-*HexForge Security name, logo and branding are protected project assets.*
-*See `LICENSE` and `TRADEMARKS.md`*
+<p>
+  <a href="https://hexforge-security-lite.onrender.com">Live Demo</a> •
+  <a href="https://github.com/BP202302/hexforge-security-lite">Repository</a> •
+  <a href="https://hexforgeai.dev">Official Site</a>
+</p>
 
 </div>
