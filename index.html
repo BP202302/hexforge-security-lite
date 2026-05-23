@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HexForge Security Lite is an open-source defensive web security scanner for safe surface mapping, configuration review, and clear technical reporting.">
+  <meta name="theme-color" content="#08111f">
+  <meta property="og:title" content="HexForge Security Lite">
+  <meta property="og:description" content="Open-source defensive security automation: scan, map, validate, and report with clear evidence.">
+  <meta property="og:image" content="/assets/hexforge-logo.png">
+  <title>HexForge Security Lite | Open-source defensive security scanner</title>
+  <link rel="stylesheet" href="/static.css">
+  <script src="/i18n.js" defer></script>
+  <style>
+    :root {
+      --hf-bg: #070b12;
+      --hf-card: rgba(10, 20, 34, .78);
+      --hf-border: rgba(106, 227, 255, .22);
+      --hf-text: #edf7ff;
+      --hf-muted: #a9b8c7;
+      --hf-cyan: #61e6ff;
+      --hf-green: #8cffb6;
+      --hf-violet: #a78bfa;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 20% 8%, rgba(97, 230, 255, .18), transparent 28rem),
+        radial-gradient(circle at 80% 0%, rgba(167, 139, 250, .16), transparent 24rem),
+        linear-gradient(180deg, #05070d 0%, #08111f 45%, #05070d 100%);
+      color: var(--hf-text);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 9, 16, .78);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand img, .brand-panel img {
+      filter: drop-shadow(0 0 18px rgba(97, 230, 255, .35));
+    }
+
+    .hero.wide-hero {
+      min-height: 72vh;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-copy h1 {
+      max-width: 860px;
+      letter-spacing: -0.055em;
+      line-height: .92;
+    }
+
+    .hero-copy p {
+      max-width: 720px;
+      font-size: clamp(1rem, 1.8vw, 1.24rem);
+      color: var(--hf-muted);
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1.2rem;
+      color: var(--hf-muted);
+      font-size: .92rem;
+    }
+
+    .hero-note span {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.045);
+      border-radius: 999px;
+      padding: .48rem .7rem;
+    }
+
+    .proof-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1.25rem auto 0;
+      width: min(1120px, calc(100% - 2rem));
+    }
+
+    .proof-strip article,
+    .highlight-box {
+      border: 1px solid var(--hf-border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      box-shadow: 0 20px 80px rgba(0,0,0,.22);
+      border-radius: 22px;
+      padding: 1rem;
+    }
+
+    .proof-strip b {
+      display: block;
+      color: var(--hf-green);
+      font-size: 1.45rem;
+      margin-bottom: .15rem;
+    }
+
+    .proof-strip span {
+      color: var(--hf-muted);
+      font-size: .92rem;
+    }
+
+    .terminal-card pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .section-lead {
+      max-width: 760px;
+      color: var(--hf-muted);
+      font-size: 1.05rem;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .roadmap-card {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 24px;
+      padding: 1.15rem;
+    }
+
+    .roadmap-card strong {
+      color: var(--hf-cyan);
+    }
+
+    .roadmap-card small {
+      display: block;
+      color: var(--hf-muted);
+      margin-top: .45rem;
+      line-height: 1.55;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 1rem;
+      align-items: center;
+      border: 1px solid var(--hf-border);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(97,230,255,.18), transparent 18rem),
+        rgba(255,255,255,.055);
+      border-radius: 28px;
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .cta-panel p {
+      color: var(--hf-muted);
+    }
+
+    .cta-panel .actions {
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 900px) {
+      .proof-strip,
+      .roadmap-grid,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-panel .actions {
+        justify-content: flex-start;
+      }
+
+      .links {
+        gap: .55rem;
+      }
+
+      .hero.wide-hero {
+        min-height: auto;
+        padding-top: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-logo"></div>
+  <div class="hacker-setup-bg" aria-hidden="true"><div class="monitor-glow"></div><div class="tower-glow"></div><div class="keyboard-glow"></div></div>
+
+  <nav class="nav">
+    <a class="brand" href="/" data-lang-link>
+      <img src="/assets/hexforge-logo.png" alt="HexForge Security logo">
+      <span>
+        <strong>HexForge Security</strong>
+        <small>Lite · Community Edition</small>
+      </span>
+    </a>
+    <div class="links">
+      <a href="/scanner" data-lang-link data-i18n="navScanner">Scanner</a>
+      <a href="#modules" data-i18n="navModules">Modules</a>
+      <a href="#workflow" data-i18n="navWorkflow">Workflow</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="https://github.com/BP202302/hexforge-security-lite" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">GitHub</a>
+      <a href="https://hexforge-security-lite.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+      <a class="pill glow" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="navSupport">Support</a>
+      <select class="lang-select" data-lang-select onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+        <option value="pt">PT</option>
+        <option value="ja">JA</option>
+        <option value="zh">ZH</option>
+        <option value="ar">AR</option>
+        <option value="hi">HI</option>
+      </select>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero wide-hero">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="heroKicker">OPEN-SOURCE DEFENSIVE SECURITY AUTOMATION</span>
+        <h1 data-i18n="heroTitle">Map your web surface. Validate evidence. Ship safer.</h1>
+        <p data-i18n="heroText">HexForge Security Lite is a free community scanner for authorized web security review. It focuses on passive checks, visible attack surface, configuration issues, and clean technical evidence without exploit automation.</p>
+        <div class="actions">
+          <a class="btn primary" href="/scanner" data-lang-link data-i18n="startScan">Start scan</a>
+          <a class="btn soft" href="https://hexforge-security-lite.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
+          <a class="btn ghost" href="/results?demo=1" data-lang-link data-i18n="demoResults">View demo</a>
+          <a class="btn soft" href="https://github.com/BP202302/hexforge-security-lite" target="_blank" rel="noopener noreferrer">View source</a>
+          <a class="btn ghost" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="supportProject">Support the project</a>
+        </div>
+        <div class="hero-note" aria-label="Project highlights">
+          <span>Open source Lite edition</span>
+          <span>Passive and read-only by design</span>
+          <span>Built for students, builders, and small teams</span>
+        </div>
+      </div>
+
+      <div class="hero-board">
+        <div class="terminal-card">
+          <div class="panel-head"><span></span><span></span><span></span><b>hexforge-lite.json</b></div>
+<pre>{
+  "edition": "Lite Community",
+  "mode": "defensive",
+  "scope": "authorized targets only",
+  "checks": ["headers", "tls", "cookies", "cors", "forms", "routes", "client_surface"],
+  "output": ["evidence", "severity", "confidence", "recommendations"],
+  "roadmap": ["Pro automation", "Specter enterprise"]
+}</pre>
+        </div>
+        <div class="side-stack">
+          <article class="mini-panel brand-panel">
+            <img src="/assets/hexforge-logo.png" alt="HexForge logo emblem">
+            <div>
+              <b>HexForge Lite</b>
+              <small>Free, defensive, structured.</small>
+            </div>
+          </article>
+          <article class="mini-panel">
+            <span class="eyebrow small" data-i18n="surfaceTitle">Surface-first workflow</span>
+            <p data-i18n="surfaceText">Routes, API-like paths, parameters, forms, headers, TLS and client-side signals are mapped for safer manual review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="HexForge Lite metrics">
+      <article><b>20+</b><span data-i18n="statModules">focused modules</span></article>
+      <article><b>0</b><span data-i18n="statExploit">exploit actions in Lite</span></article>
+      <article><b>7</b><span>interface languages</span></article>
+      <article><b>MIT</b><span>open-source license</span></article>
+    </section>
+
+    <section id="how-it-works" class="section compact how-works-section">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. Clean evidence.</h2>
+      <p class="section-lead">Lite is built to help you understand a web target you own or are authorized to test. It does not brute force, exploit, or submit attack payloads.</p>
+      <div class="cards three how-works-grid">
+        <article class="card icon-card how-step">
+          <span class="icon">01</span>
+          <h3>Enter URL</h3>
+          <p>Use an owned, lab, internal, or explicitly authorized target.</p>
+        </article>
+        <article class="card icon-card how-step">
+          <span class="icon">02</span>
+          <h3>Analyze safely</h3>
+          <p>Lite checks headers, TLS, cookies, redirects, CORS, forms, endpoints and passive client surface.</p>
+        </article>
+        <article class="card icon-card how-step">
+          <span class="icon">03</span>
+          <h3>Review results</h3>
+          <p>See severity, confidence, evidence, recommendations, endpoint mapping and exportable JSON.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="modules" class="section compact">
+      <span class="eyebrow" data-i18n="sectionChecks">What it checks</span>
+      <h2 data-i18n="sectionSignal">Built for signal, not noise.</h2>
+      <p class="section-lead" data-i18n="checksText">Lite reviews headers, cookies, CORS, TLS, redirects, discovery files, metadata, forms, parameters, endpoint routes and passive client surface.</p>
+      <div class="cards three">
+        <article class="card icon-card">
+          <span class="icon">🛡️</span>
+          <h3 data-i18n="cardHeaders">Headers and browser</h3>
+          <p data-i18n="cardHeadersText">CSP, HSTS, Referrer-Policy, Permissions-Policy, X-Content-Type-Options and iframe protection.</p>
+        </article>
+        <article class="card icon-card">
+          <span class="icon">🧭</span>
+          <h3 data-i18n="cardSurface">Crawler and surface map</h3>
+          <p data-i18n="cardSurfaceText">Read-only same-origin crawl, visible routes, API-like paths, query parameters and endpoint mapping without fuzzing.</p>
+        </article>
+        <article class="card icon-card">
+          <span class="icon">📌</span>
+          <h3 data-i18n="cardEvidence">Evidence and translations</h3>
+          <p data-i18n="cardEvidenceText">Every finding includes location, evidence, recommendation, confidence and multi-language rendering.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" class="section split">
+      <div>
+        <span class="eyebrow">Lite workflow</span>
+        <h2 data-i18n="workflowTitle">Scan → Map → Validate → Decide.</h2>
+        <p data-i18n="workflowText">HexForge Lite stays conservative: it fetches safely, maps visible surface, validates findings, and leaves active confirmation to authorized manual review.</p>
+      </div>
+      <div class="timeline">
+        <div><b>01</b><span data-i18n="flow1">Normalize URL</span></div>
+        <div><b>02</b><span data-i18n="flow2">Fetch safely</span></div>
+        <div><b>03</b><span data-i18n="flow3">Map routes and forms</span></div>
+        <div><b>04</b><span data-i18n="flow4">Validate & deduplicate</span></div>
+        <div><b>05</b><span data-i18n="flow5">Render translated report</span></div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section compact">
+      <span class="eyebrow">Product roadmap</span>
+      <h2>Lite stays free. Pro and Specter grow the platform.</h2>
+      <p class="section-lead">HexForge is being built as a real product line: Lite for the open-source community, Pro for individual power users, and Specter for advanced/enterprise workflows.</p>
+      <div class="roadmap-grid">
+        <article class="roadmap-card">
+          <strong>Lite</strong>
+          <small>Open-source defensive scanner, passive checks, endpoint mapping, evidence, recommendations, demo reports, and community use.</small>
+        </article>
+        <article class="roadmap-card">
+          <strong>Pro</strong>
+          <small>Planned paid tier for stronger automation, richer reports, integrations, AI-assisted summaries, and productivity workflows.</small>
+        </article>
+        <article class="roadmap-card">
+          <strong>Specter</strong>
+          <small>Planned premium/enterprise direction for deeper orchestration, team use, advanced reporting, and controlled security automation.</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="section-title row">
+        <div>
+          <span class="eyebrow">Lite boundaries</span>
+          <h2 data-i18n="liteBoundaryTitle">Safer by design.</h2>
+          <p class="section-lead" data-i18n="liteBoundaryText">The community edition is intentionally useful without becoming an exploit framework.</p>
+        </div>
+      </div>
+      <div class="cards two">
+        <article class="card">
+          <ul class="clean-list">
+            <li data-i18n="boundary1">Passive HTTP/TLS checks</li>
+            <li data-i18n="boundary2">Read-only crawler with small limits</li>
+            <li data-i18n="boundary3">Parameter and form discovery without submission</li>
+            <li data-i18n="boundary4">No brute force, no exploit payload automation</li>
+          </ul>
+        </article>
+        <article class="card support-card inline-card">
+          <div>
+            <h2 data-i18n="supportTitle">Support HexForge development</h2>
+            <p data-i18n="supportText">If HexForge Security Lite helps you, support development or visit the official HexForgeAI website.</p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="openWebsite">HexForgeAI.dev</a>
+            <a class="btn ghost" href="https://www.paypal.com/donate/?hosted_button_id=S3335NNBYZXES" target="_blank" rel="noopener noreferrer" data-i18n="supportProject">Support the project</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="cta-panel">
+        <div>
+          <span class="eyebrow">Ready to try it?</span>
+          <h2>Run a defensive scan or inspect the source.</h2>
+          <p>Use HexForge Lite on targets you own, lab environments, or systems where you have explicit authorization.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="/scanner" data-lang-link>Start scan</a>
+          <a class="btn ghost" href="https://github.com/BP202302/hexforge-security-lite" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>HexForge Security Lite · Open source community edition</span>
+    <div>
+      <a href="/scanner" data-lang-link data-i18n="startScan">Start scan</a>
+      <a href="https://hexforge-security-lite.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
+      <a href="https://hexforgeai.dev/" target="_blank" rel="noopener noreferrer" data-i18n="navWebsite">Official site</a>
+    </div>
+  </footer>
+</body>
+</html>
