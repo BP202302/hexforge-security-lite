@@ -1,0 +1,13 @@
+{
+  "name": "solana-subscriptions-agent-allowance-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local and SDK-mapped demo for Solana Subscriptions & Allowances agent API budgets.",
+  "type": "module",
+  "scripts": {
+    "demo": "node src/local-simulator.js",
+    "test": "node test/local-simulator.test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
